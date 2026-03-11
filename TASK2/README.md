@@ -280,49 +280,6 @@ Complexity:
 | `~MessengerSystem()` | `O(n + d)` | `O(1)` | frees list and stack memory |
 
 
-## Test Cases Included in `main()`
-
-The program includes two test groups. Their purposes are consistent with the comments written in the source code and together they verify both normal behavior and edge conditions.
-
-### Test Case 1: Basic Message Operations and Undo
-
-Purpose:
-
-- sending multiple messages
-- `deleteForEveryone()` within the allowed time
-- `deleteForMe()`
-- undo of the last deletion
-- multiple undo operations
-- attempting to delete an already deleted message
-- attempting to delete a non-existing message
-- undo when no deleted message remains
-
-This test case confirms that the basic messenger operations work correctly under normal and invalid conditions.
-
-### Test Case 2: Time Limit, Multiple Deletes, and Multiple Undo Operations
-
-Purpose:
-
-- sending many messages
-- `deleteForEveryone()` within the allowed time
-- `deleteForEveryone()` after the time limit has passed
-- `deleteForMe()`
-- multiple delete operations
-- multiple undo operations
-- undo after the stack becomes empty
-
-This test case verifies the 120-second restriction and checks whether the stack-based undo mechanism behaves correctly after several operations.
-
-## Output Produced by the Program
-
-The program produces output showing:
-
-- confirmation of sent messages
-- the chat after every update
-- deleted-message placeholders during display
-- rejection of invalid delete requests
-- restoration of messages after undo
-
 ## How to Compile and Run
 
 Using `g++`:

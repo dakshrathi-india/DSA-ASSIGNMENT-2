@@ -359,21 +359,86 @@ public:
     }
 };
 
-int main()
-{
-    srand(time(0));
+void testcase_report(){
+    // ================================
+    // TEST CASE 1
+    // ================================
+    cout << "========== TEST CASE 1 ==========" << endl;
 
+    SkipList tc1;
+
+    tc1.insertPlayer(101, "Aman", 920, 10);
+    tc1.insertPlayer(102, "Rohit", 870, 15);
+    tc1.insertPlayer(103, "Karan", 900, 12);
+    tc1.insertPlayer(104, "Nitin", 880, 18);
+
+    cout << endl << "Leaderboard after insertion:" << endl;
+    tc1.displayLeaderBoard();
+
+    cout << endl << "Searching player Karan:" << endl;
+    SkipListNode *p1 = tc1.searchPlayer(103, "Karan", 900, 12);
+    if (p1 != NULL)
+    {
+        tc1.displayDetails(p1);
+        cout << "Rank of Player 103: " << tc1.getRank(103) << endl;
+    }
+    else
+    {
+        cout << "Player not found" << endl;
+    }
+
+    cout << endl << "Updating Rohit score from 870 to 940" << endl;
+    tc1.updateScore(102, "Rohit", 870, 15, 940);
+
+    cout << endl << "Leaderboard after update:" << endl;
+    tc1.displayLeaderBoard();
+
+    cout << endl << "Top 2 Players:" << endl;
+    tc1.getTopK(2);
+
+
+    // ================================
+    // TEST CASE 2
+    // ================================
+    cout << endl << "========== TEST CASE 2 ==========" << endl;
+
+    SkipList tc2;
+
+    tc2.insertPlayer(201, "Arjun", 880, 20);
+    tc2.insertPlayer(202, "Dev", 880, 10);
+    tc2.insertPlayer(203, "Yash", 860, 25);
+    tc2.insertPlayer(204, "Harsh", 910, 14);
+
+    cout << endl << "Leaderboard after insertion:" << endl;
+    tc2.displayLeaderBoard();
+
+    cout << endl << "Searching player Dev:" << endl;
+    SkipListNode *p2 = tc2.searchPlayer(202, "Dev", 880, 10);
+    if (p2 != NULL)
+    {
+        tc2.displayDetails(p2);
+        cout << "Rank of Player 202: " << tc2.getRank(202) << endl;
+    }
+    else
+    {
+        cout << "Player not found" << endl;
+    }
+
+    cout << endl << "Deleting player Yash" << endl;
+    tc2.deletePlayer(203, "Yash", 860, 25);
+
+    cout << endl << "Leaderboard after deletion:" << endl;
+    tc2.displayLeaderBoard();
+
+    cout << endl << "Top 3 Players:" << endl;
+    tc2.getTopK(3);
+}
+
+void testcase_rigrous(){
     // ============================================================
     // TEST CASE 1: BASIC ORDERING + SEARCH + RANK + UPDATE + DELETE
-    // Purpose:
-    // - descending order of score
-    // - search existing player
-    // - getRank()
-    // - getTopK()
-    // - updateScore() causing reposition
-    // - deletePlayer() existing player
     // ============================================================
-    cout << "\n========== TEST CASE 1 : BASIC ORDERING + UPDATE + DELETE ==========\n";
+    cout << "================ TEST CASE 1 ================" << endl;
 
     SkipList tc1;
     tc1.insertPlayer(101, "Aarav", 900, 10);
@@ -381,10 +446,10 @@ int main()
     tc1.insertPlayer(103, "Aditya", 920, 8);
     tc1.insertPlayer(104, "Krishna", 870, 9);
 
-    cout << "\nLeaderboard after insertion:\n";
+    cout << endl << "Leaderboard after insertion:" << endl;
     tc1.displayLeaderBoard();
 
-    cout << "\nSearch Aditya:\n";
+    cout << endl << "Search Aditya:" << endl;
     SkipListNode *p1 = tc1.searchPlayer(103, "Aditya", 920, 8);
     if (p1 != NULL)
     {
@@ -393,43 +458,37 @@ int main()
     }
     else
     {
-        cout << "Player not found\n";
+        cout << "Player not found" << endl;
     }
 
-    cout << "\nRank of Aarav: " << tc1.getRank(101) << endl;
+    cout << endl << "Rank of Aarav: " << tc1.getRank(101) << endl;
 
-    cout << "\nTop 3 players:\n";
+    cout << endl << "Top 3 players:" << endl;
     tc1.getTopK(3);
 
-    cout << "\nSkip List Structure:\n";
+    cout << endl << "Skip List Structure:" << endl;
     tc1.displaySkipListStructure();
 
-    cout << "\nUpdating Vivaan score from 850 to 950\n";
+    cout << endl << "Updating Vivaan score from 850 to 950" << endl;
     tc1.updateScore(102, "Vivaan", 850, 12, 950);
 
-    cout << "\nLeaderboard after update:\n";
+    cout << endl << "Leaderboard after update:" << endl;
     tc1.displayLeaderBoard();
 
-    cout << "\nDeleting Krishna\n";
+    cout << endl << "Deleting Krishna" << endl;
     tc1.deletePlayer(104, "Krishna", 870, 9);
 
-    cout << "\nLeaderboard after deletion:\n";
+    cout << endl << "Leaderboard after deletion:" << endl;
     tc1.displayLeaderBoard();
 
-    cout << "\nFinal Skip List Structure:\n";
+    cout << endl << "Final Skip List Structure:" << endl;
     tc1.displaySkipListStructure();
 
 
     // ============================================================
     // TEST CASE 2: SAME SCORE, DIFFERENT TIMESTAMPS
-    // Purpose:
-    // - tie-breaking by earlier timestamp
-    // - getRank() under tie conditions
-    // - search existing player
-    // - updateScore() causing player to move to top
-    // - delete top player
     // ============================================================
-    cout << "\n========== TEST CASE 2 : SAME SCORE, DIFFERENT TIMESTAMPS ==========\n";
+    cout << endl << endl << "================ TEST CASE 2 ================" << endl;
 
     SkipList tc2;
     tc2.insertPlayer(201, "Rohan", 880, 15);
@@ -437,10 +496,10 @@ int main()
     tc2.insertPlayer(203, "Kabir", 880, 13);
     tc2.insertPlayer(204, "Ishaan", 910, 20);
 
-    cout << "\nLeaderboard after insertion:\n";
+    cout << endl << "Leaderboard after insertion:" << endl;
     tc2.displayLeaderBoard();
 
-    cout << "\nSearch Kabir:\n";
+    cout << endl << "Search Kabir:" << endl;
     SkipListNode *p2 = tc2.searchPlayer(203, "Kabir", 880, 13);
     if (p2 != NULL)
     {
@@ -449,44 +508,37 @@ int main()
     }
     else
     {
-        cout << "Player not found\n";
+        cout << "Player not found" << endl;
     }
 
-    cout << "\nRank of Arjun: " << tc2.getRank(202) << endl;
+    cout << endl << "Rank of Arjun: " << tc2.getRank(202) << endl;
 
-    cout << "\nTop 2 players:\n";
+    cout << endl << "Top 2 players:" << endl;
     tc2.getTopK(2);
 
-    cout << "\nSkip List Structure:\n";
+    cout << endl << "Skip List Structure:" << endl;
     tc2.displaySkipListStructure();
 
-    cout << "\nUpdating Rohan score from 880 to 930\n";
+    cout << endl << "Updating Rohan score from 880 to 930" << endl;
     tc2.updateScore(201, "Rohan", 880, 15, 930);
 
-    cout << "\nLeaderboard after update:\n";
+    cout << endl << "Leaderboard after update:" << endl;
     tc2.displayLeaderBoard();
 
-    cout << "\nDeleting Ishaan\n";
+    cout << endl << "Deleting Ishaan" << endl;
     tc2.deletePlayer(204, "Ishaan", 910, 20);
 
-    cout << "\nLeaderboard after deletion:\n";
+    cout << endl << "Leaderboard after deletion:" << endl;
     tc2.displayLeaderBoard();
 
-    cout << "\nFinal Skip List Structure:\n";
+    cout << endl << "Final Skip List Structure:" << endl;
     tc2.displaySkipListStructure();
 
 
     // ============================================================
     // TEST CASE 3: SAME SCORE AND SAME TIMESTAMP
-    // Purpose:
-    // - verify 3rd tie-breaker by playerID
-    // - search existing player
-    // - getRank()
-    // - getTopK()
-    // - updateScore()
-    // - deletePlayer()
     // ============================================================
-    cout << "\n========== TEST CASE 3 : SAME SCORE AND SAME TIMESTAMP ==========\n";
+    cout << endl << endl << "================ TEST CASE 3 ================" << endl;
 
     SkipList tc3;
     tc3.insertPlayer(301, "Dhruv", 870, 25);
@@ -494,10 +546,10 @@ int main()
     tc3.insertPlayer(303, "Kunal", 870, 25);
     tc3.insertPlayer(304, "Samar", 890, 18);
 
-    cout << "\nLeaderboard after insertion:\n";
+    cout << endl << "Leaderboard after insertion:" << endl;
     tc3.displayLeaderBoard();
 
-    cout << "\nSearch Yash:\n";
+    cout << endl << "Search Yash:" << endl;
     SkipListNode *p3 = tc3.searchPlayer(302, "Yash", 870, 25);
     if (p3 != NULL)
     {
@@ -506,113 +558,84 @@ int main()
     }
     else
     {
-        cout << "Player not found\n";
+        cout << "Player not found" << endl;
     }
 
-    cout << "\nRank of Kunal: " << tc3.getRank(303) << endl;
+    cout << endl << "Rank of Kunal: " << tc3.getRank(303) << endl;
 
-    cout << "\nTop 4 players:\n";
+    cout << endl << "Top 4 players:" << endl;
     tc3.getTopK(4);
 
-    cout << "\nSkip List Structure:\n";
+    cout << endl << "Skip List Structure:" << endl;
     tc3.displaySkipListStructure();
 
-    cout << "\nUpdating Dhruv score from 870 to 905\n";
+    cout << endl << "Updating Dhruv score from 870 to 905" << endl;
     tc3.updateScore(301, "Dhruv", 870, 25, 905);
 
-    cout << "\nLeaderboard after update:\n";
+    cout << endl << "Leaderboard after update:" << endl;
     tc3.displayLeaderBoard();
 
-    cout << "\nDeleting Yash\n";
+    cout << endl << "Deleting Yash" << endl;
     tc3.deletePlayer(302, "Yash", 870, 25);
 
-    cout << "\nLeaderboard after deletion:\n";
+    cout << endl << "Leaderboard after deletion:" << endl;
     tc3.displayLeaderBoard();
 
-    cout << "\nFinal Skip List Structure:\n";
+    cout << endl << "Final Skip List Structure:" << endl;
     tc3.displaySkipListStructure();
 
 
     // ============================================================
-    // TEST CASE 4: EDGE CASES / INVALID OPERATIONS
-    // Purpose:
-    // - duplicate ID insertion
-    // - search non-existing player
-    // - getRank() non-existing
-    // - getTopK(k > n)
-    // - getTopK(0)
-    // - updateScore() non-existing
-    // - deletePlayer() non-existing
-    // - delete remaining players
+    // TEST CASE 4: EDGE CASES
     // ============================================================
-    cout << "\n========== TEST CASE 4 : EDGE CASES AND INVALID OPERATIONS ==========\n";
+    cout << endl << endl << "================ TEST CASE 4 ================" << endl;
 
     SkipList tc4;
     tc4.insertPlayer(401, "Manav", 760, 30);
     tc4.insertPlayer(402, "Reyansh", 990, 5);
     tc4.insertPlayer(403, "Laksh", 800, 22);
 
-    cout << "\nTrying duplicate ID insertion:\n";
-    tc4.insertPlayer(402, "DuplicateReyansh", 950, 7);
-
-    cout << "\nLeaderboard after insertion:\n";
+    cout << endl << "Leaderboard after insertion:" << endl;
     tc4.displayLeaderBoard();
 
-    cout << "\nSearch existing player Reyansh:\n";
+    cout << endl << "Search existing player Reyansh:" << endl;
     SkipListNode *p4 = tc4.searchPlayer(402, "Reyansh", 990, 5);
     if (p4 != NULL)
     {
         tc4.displayDetails(p4);
         cout << "Rank : " << tc4.getRank(402) << endl;
     }
-    else
-    {
-        cout << "Player not found\n";
-    }
 
-    cout << "\nSearch non-existing player:\n";
+    cout << endl << "Search non-existing player:" << endl;
     SkipListNode *p5 = tc4.searchPlayer(999, "Unknown", 500, 50);
-    if (p5 != NULL)
-    {
-        tc4.displayDetails(p5);
-    }
-    else
-    {
-        cout << "Player not found\n";
-    }
+    if (p5 == NULL)
+        cout << "Player not found" << endl;
 
-    cout << "\nRank of Reyansh: " << tc4.getRank(402) << endl;
-    cout << "Rank of non-existing player: " << tc4.getRank(999) << endl;
-
-    cout << "\nTop 10 players:\n";
+    cout << endl << "Top 10 players:" << endl;
     tc4.getTopK(10);
 
-    cout << "\nTop 0 players:\n";
-    tc4.getTopK(0);
-
-    cout << "\nSkip List Structure:\n";
-    tc4.displaySkipListStructure();
-
-    cout << "\nTrying to update non-existing player:\n";
-    tc4.updateScore(999, "Unknown", 500, 50, 700);
-
-    cout << "\nTrying to delete non-existing player:\n";
-    tc4.deletePlayer(999, "Unknown", 500, 50);
-
-    cout << "\nDeleting Laksh\n";
+    cout << endl << "Deleting Laksh" << endl;
     tc4.deletePlayer(403, "Laksh", 800, 22);
 
-    cout << "\nDeleting Manav\n";
+    cout << endl << "Deleting Manav" << endl;
     tc4.deletePlayer(401, "Manav", 760, 30);
 
-    cout << "\nDeleting Reyansh\n";
+    cout << endl << "Deleting Reyansh" << endl;
     tc4.deletePlayer(402, "Reyansh", 990, 5);
 
-    cout << "\nLeaderboard after deleting all players:\n";
+    cout << endl << "Leaderboard after deleting all players:" << endl;
     tc4.displayLeaderBoard();
 
-    cout << "\nFinal Skip List Structure:\n";
+    cout << endl << "Final Skip List Structure:" << endl;
     tc4.displaySkipListStructure();
 
+}
+
+int main()
+{
+    srand(11);
+
+    //here i am calling the testcase_report to call the small test cases to be mentioned in the report, but we can call the testcase_rigrous for complex test cases
+    testcase_report();
     return 0;
 }

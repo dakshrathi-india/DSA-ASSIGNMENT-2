@@ -315,62 +315,6 @@ Complexity:
 | `displaySkipListStructure()` | `O(nL)` general, `O(n)` here | `O(1)` | `L` bounded by fixed max level |
 | `~SkipList()` | `O(n)` | `O(1)` | deletes all nodes |
 
-## Test Cases Included in `main()`
-
-The program includes four test groups. Their purposes are consistent with the comments written in the source code and together they verify both normal behavior and edge conditions.
-
-### Test Case 1: Basic Ordering + Search + Rank + Update + Delete
-
-Purpose:
-
-- descending order of score
-- search existing player
-- `getRank()`
-- `getTopK()`
-- `updateScore()` causing reposition
-- `deletePlayer()` for an existing player
-
-This test case confirms that normal insertion and leaderboard maintenance behave correctly.
-
-### Test Case 2: Same Score, Different Timestamps
-
-Purpose:
-
-- tie-breaking by earlier timestamp
-- `getRank()` under tie conditions
-- search existing player
-- `updateScore()` causing player to move to top
-- delete top player
-
-This test case verifies that timestamp is correctly used when scores are equal.
-
-### Test Case 3: Same Score and Same Timestamp
-
-Purpose:
-
-- verify 3rd tie-breaker by player ID
-- search existing player
-- `getRank()`
-- `getTopK()`
-- `updateScore()`
-- `deletePlayer()`
-
-This test case verifies the additional ordering rule used to avoid ambiguity.
-
-### Test Case 4: Edge Cases and Invalid Operations
-
-Purpose:
-
-- search non-existing player
-- `getRank()` for non-existing player
-- `getTopK(k > n)`
-- `getTopK(0)`
-- `updateScore()` for non-existing player
-- `deletePlayer()` for non-existing player
-- delete remaining players
-
-This test case checks the robustness of the implementation when invalid or boundary conditions are used.
-
 ## How to Compile and Run
 
 Using `g++`:
